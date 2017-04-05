@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.bme.iemqra.mobsoft.myapplication.ui.browse.BrowsePresenter;
 import hu.bme.iemqra.mobsoft.myapplication.ui.main.MainPresenter;
 
 @Module
@@ -31,5 +32,7 @@ public class UIModule {
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
-
+    public BrowsePresenter provideBrowsePresenter() {
+        return new BrowsePresenter();
+    }
 }

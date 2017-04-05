@@ -8,13 +8,14 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import hu.bme.iemqra.mobsoft.myapplication.ui.UIModule;
+import hu.bme.iemqra.mobsoft.myapplication.ui.browse.BrowseActivity;
 import hu.bme.iemqra.mobsoft.myapplication.ui.main.MainActivity;
 
 @Singleton
 @Component(modules = {UIModule.class})
 public interface MobSoftApplicationComponent {
     void inject(MainActivity mainActivity);
-
+    void inject(BrowseActivity BrowseActivity);
     //void inject(LoginActivity a);
 
 }
