@@ -5,4 +5,6 @@ package hu.bme.iemqra.mobsoft.myapplication.ui.browse;
  */
 
 public interface BrowseScreen {
+    void showMessage(String text);
+    void showDrinks(String s);
 }
