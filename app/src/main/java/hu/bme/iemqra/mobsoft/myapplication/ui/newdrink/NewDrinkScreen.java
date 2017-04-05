@@ -5,4 +5,7 @@ package hu.bme.iemqra.mobsoft.myapplication.ui.newdrink;
  */
 
 public interface NewDrinkScreen {
+    void showMessage(String text);
+    void showRecipe(int id);
+
 }

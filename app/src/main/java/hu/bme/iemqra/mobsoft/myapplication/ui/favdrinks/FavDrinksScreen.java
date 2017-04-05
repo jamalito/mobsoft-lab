@@ -5,4 +5,7 @@ package hu.bme.iemqra.mobsoft.myapplication.ui.favdrinks;
  */
 
 public interface FavDrinksScreen {
+    void showMessage(String text);
+    void deleteFav(int id);
+    void showFav(int id);
 }
