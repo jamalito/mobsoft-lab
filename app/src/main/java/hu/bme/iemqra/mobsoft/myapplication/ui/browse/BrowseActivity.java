@@ -22,7 +22,7 @@ public class BrowseActivity extends AppCompatActivity implements BrowseScreen {
     protected void onCreate(Bundle savedInstanceState) {
         MobSoftApplication.injector.inject(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_browse);
     }
     //TODO: call inject
 

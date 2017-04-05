@@ -14,10 +14,10 @@ public void attachScreen(BrowseScreen screen) {
         }
 
 @Override
-public void detachScreen() {
-        super.detachScreen();
-        }
+public void detachScreen() { super.detachScreen();  }
 
 public void refreshDrinks() {
+    }
+public void addFavourites() {
     }
 }

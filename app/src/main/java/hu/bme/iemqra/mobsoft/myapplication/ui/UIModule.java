@@ -12,6 +12,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import hu.bme.iemqra.mobsoft.myapplication.ui.browse.BrowsePresenter;
+import hu.bme.iemqra.mobsoft.myapplication.ui.drinkdetails.DrinkDetailsPresenter;
 import hu.bme.iemqra.mobsoft.myapplication.ui.main.MainPresenter;
 
 @Module
@@ -32,7 +33,15 @@ public class UIModule {
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
+    @Provides
+    @Singleton
     public BrowsePresenter provideBrowsePresenter() {
+
         return new BrowsePresenter();
+    }
+    @Provides
+    @Singleton
+    public DrinkDetailsPresenter provideDrinkDetailsPresenter() {
+        return new DrinkDetailsPresenter();
     }
 }

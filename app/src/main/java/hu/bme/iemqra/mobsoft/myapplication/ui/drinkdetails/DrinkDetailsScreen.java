@@ -5,4 +5,6 @@ package hu.bme.iemqra.mobsoft.myapplication.ui.drinkdetails;
  */
 
 public interface DrinkDetailsScreen {
+    void showMessage(String text);
+    void updateDrink(int id);
 }
