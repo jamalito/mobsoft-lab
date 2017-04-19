@@ -39,7 +39,7 @@ public class SugarOrmRepository implements Repository {
     }
 
     @Override
-    public void saveFavourite(Drink drink){}
+    public void addFavourite(Drink drink){}
 
     @Override
     public void updateDrink(Drink drink){}
