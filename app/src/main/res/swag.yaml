@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  title: Uber API
+  description: Italnyilvantarto
+  version: "1.0.0"
+# the domain of the service
+host: api.uber.com
+# array of all schemes that your API supports
+schemes:
+  - http
+  - https
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /drinks:
+    get:
+      summary: Get all drinks
+      responses:
+        200:
+          description: barmilyen italok sikeres lekerese
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Drink'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /drinks/{id}:
+    get:
+      summary: drinkbyid
+      parameters:
+        - name: id
+          in: path
+          description: drink id
+          required: true
+          type: number
+          format: int
+      responses:
+        200:
+          description: fain reszletes
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Drink'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /drink/search/{searchText}:
+    get:
+      summary: search
+      parameters:
+        - name: searchText
+          in: path
+          type: string
+          description: search text
+          required: true
+      responses:
+        200:
+          description: succesful opertaion
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Drink'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /drink:
+    post:
+      summary: add new drink
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/NewDrink'
+      responses:
+        200:
+          description: succesful
+          schema:
+            $ref: '#/definitions/Drink'
+definitions:
+  Drink:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier
+      name:
+        type: string
+        description: Description of product.
+      type:
+        type: string
+        description: Display name of product.
+      img:
+        type: string
+        description: Capacity of product. For example, 4 people.
+      count:
+        type: string
+        description: Image URL representing the product.
+      recomm:
+        type: string
+        description: Image URL representing the product.
+  NewDrink:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Description of product.
+      type:
+        type: string
+        description: Display name of product.
+      img:
+        type: string
+        description: Capacity of product. For example, 4 people.
+      count:
+        type: string
+        description: Image URL representing the product.
+      recomm:
+        type: string
+        description: Image URL representing the product.
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
