@@ -18,15 +18,11 @@ public interface Repository {
 
     List<Drink> getFavourites();
 
-    List<Drink> getDrinks();
-
-    void addDrink(Drink drink);
-
     void addFavourite(Drink drink);
 
-    void updateDrink(Drink drink);
-
     void removeFavourite(Drink drink);
+
+    void updateFavourites(List<Drink> drinks);
 
     boolean isInDB(Drink drink);
 }

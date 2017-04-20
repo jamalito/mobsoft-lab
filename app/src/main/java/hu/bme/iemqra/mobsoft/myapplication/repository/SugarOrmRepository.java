@@ -2,6 +2,7 @@ package hu.bme.iemqra.mobsoft.myapplication.repository;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.orm.SugarContext;
 import com.orm.SugarRecord;
@@ -25,31 +26,37 @@ public class SugarOrmRepository implements Repository {
 
     @Override
     public List<Drink> getFavourites(){
-        return null;
+         return SugarRecord.listAll(Drink.class);
     }
 
     @Override
-    public List<Drink> getDrinks(){
-        return null;
+    public void addFavourite(Drink drink){
+        SugarRecord.saveInTx(drink);
     }
 
     @Override
-    public void addDrink(Drink drink){
-
+    public void removeFavourite(Drink drink){
+        SugarRecord.deleteInTx(drink);
     }
 
     @Override
-    public void addFavourite(Drink drink){}
-
-    @Override
-    public void updateDrink(Drink drink){}
-
-    @Override
-    public void removeFavourite(Drink drink){}
+    public void updateFavourites(List<Drink> drinks){
+        List<Drink> favourites = getFavourites();
+        List<Drink> toUpdate = new ArrayList<>(favourites.size());
+        for (Drink favourite : favourites) {
+            for (Drink drink : drinks) {
+                if (drink.getId().equals(favourite.getId())) {
+                    toUpdate.add(drink);
+                }
+            }
+        }
+        SugarRecord.saveInTx(toUpdate);
+    }
 
     @Override
     public boolean isInDB(Drink drink){
-        return true;
+
+        return SugarRecord.findById(Drink.class, drink.getId()) != null;
     }
 
 }
