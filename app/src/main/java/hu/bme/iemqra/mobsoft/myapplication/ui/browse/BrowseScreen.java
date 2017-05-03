@@ -1,10 +1,10 @@
 package hu.bme.iemqra.mobsoft.myapplication.ui.browse;
 
-/**
- * Created by mobsoft on 2017. 03. 24..
- */
+import java.util.List;
+
+import hu.bme.iemqra.mobsoft.myapplication.model.Drink;
 
 public interface BrowseScreen {
     void showMessage(String text);
-    void showDrinks(String s);
+    void showDrinks(List<Drink> drinkList);
 }

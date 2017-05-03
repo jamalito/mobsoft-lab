@@ -5,12 +5,10 @@ import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.GetFavourites
 import hu.bme.iemqra.mobsoft.myapplication.ui.Presenter;
 import java.util.concurrent.Executor;
 import android.util.Log;
-import javax.inject.Inject;
 
-import de.greenrobot.event.EventBus;
-/**
- * Created by jamalito on 2017.04.05..
- */
+import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
 
 public class FavDrinksPresenter extends Presenter<FavDrinksScreen> {
 

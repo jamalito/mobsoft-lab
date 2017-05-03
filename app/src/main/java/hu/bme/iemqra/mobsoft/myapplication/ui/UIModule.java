@@ -7,6 +7,8 @@ package hu.bme.iemqra.mobsoft.myapplication.ui;
 import android.content.Context;
 
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -16,7 +18,6 @@ import hu.bme.iemqra.mobsoft.myapplication.ui.drinkdetails.DrinkDetailsPresenter
 import hu.bme.iemqra.mobsoft.myapplication.ui.favdrinks.FavDrinksPresenter;
 import hu.bme.iemqra.mobsoft.myapplication.ui.main.MainPresenter;
 import hu.bme.iemqra.mobsoft.myapplication.ui.newdrink.NewDrinkPresenter;
-import de.greenrobot.event.EventBus;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 @Module
@@ -40,33 +41,39 @@ public class UIModule {
 
         return new MainPresenter();
     }
+
     @Provides
     @Singleton
     public BrowsePresenter provideBrowsePresenter() {
 
         return new BrowsePresenter();
     }
+
     @Provides
     @Singleton
     public DrinkDetailsPresenter provideDrinkDetailsPresenter() {
         return new DrinkDetailsPresenter();
     }
+
     @Provides
     @Singleton
     public FavDrinksPresenter provideFavDrinksPresenter() {
         return new FavDrinksPresenter();
     }
+
     @Provides
     @Singleton
     public NewDrinkPresenter provideNewDrinkPresenter() {
 
         return new NewDrinkPresenter();
     }
+
     @Provides
     @Singleton
     public EventBus provideEventBus() {
         return EventBus.getDefault();
     }
+
     @Provides
     @Singleton
     public Executor provideExecutor() {

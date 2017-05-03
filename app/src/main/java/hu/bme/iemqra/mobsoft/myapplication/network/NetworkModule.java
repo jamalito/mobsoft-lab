@@ -36,9 +36,7 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public DrinkApi provideATodoApi(Retrofit retrofit) {
+    public DrinkApi provideDrinkApi(Retrofit retrofit) {
         return retrofit.create(DrinkApi.class);
     }
-
-
 }

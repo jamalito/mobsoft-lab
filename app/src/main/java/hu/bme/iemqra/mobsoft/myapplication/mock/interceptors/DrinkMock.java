@@ -1,45 +1,72 @@
 package hu.bme.iemqra.mobsoft.myapplication.mock.interceptors;
 
-/**
- * Created by jamalito on 2017.05.02..
- */
-import android.net.Uri;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import hu.bme.iemqra.mobsoft.myapplication.network.NetworkConfig;
-import hu.bme.iemqra.mobsoft.myapplication.repository.MemoryRepository;
-import hu.bme.iemqra.mobsoft.myapplication.utils.GsonHelper;
-import okhttp3.Headers;
-import okhttp3.Request;
-import okhttp3.Response;
+import hu.bme.iemqra.mobsoft.myapplication.model.Drink;
+import hu.bme.iemqra.mobsoft.myapplication.model.api.NewDrink;
+import hu.bme.iemqra.mobsoft.myapplication.network.drink.DrinkApi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
 
-import static hu.bme.iemqra.mobsoft.myapplication.mock.interceptors.MockHelper.makeResponse;
-public class DrinkMock {
-    public static Response process(Request request) {
-        Uri uri = Uri.parse(request.url().toString());
+public class DrinkMock implements DrinkApi {
 
-        String responseString;
-        int responseCode;
-        Headers headers = request.headers();
+    @Override
+    public Call<Drink> drinkPost(@Body NewDrink body) {
+        return null;
+    }
 
+    @Override
+    public Call<List<Drink>> drinkSearchSearchTextGet(@Path("searchText") String searchText) {
+        return null;
+    }
 
-        if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "todo/favourite") && request.method().equals("POST")) {
-            responseString = "";
-            responseCode = 200;
+    @Override
+    public Call<List<Drink>> drinksGet() {
+        final List<Drink> drinks = new ArrayList<>();
+        drinks.add(new Drink(1L, "Name", "Type", "Url", 1, "not recommended"));
 
-            /**
-             * Simple Get Example
-             */
-			/*
-		}else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "Todos") && request.method().equals("Get")) {
-			MemoryRepository memoryRepository = new MemoryRepository();
-			memoryRepository.open(null);
-			responseString = GsonHelper.getGson().toJson(memoryRepository.getFavourites());
-			responseCode = 200;*/
-        } else {
-            responseString = "ERROR";
-            responseCode = 503;
-        }
+        Call<List<Drink>> call = new Call<List<Drink>>() {
+            @Override
+            public Response<List<Drink>> execute() throws IOException {
+                return Response.success(drinks);
+            }
 
-        return makeResponse(request, headers, responseCode, responseString);
+            @Override
+            public void enqueue(Callback<List<Drink>> callback) {
+
+            }
+
+            @Override
+            public boolean isExecuted() {
+                return false;
+            }
+
+            @Override
+            public void cancel() {
+
+            }
+
+            @Override
+            public boolean isCanceled() {
+                return false;
+            }
+
+            @Override
+            public Call<List<Drink>> clone() {
+                return null;
+            }
+        };
+
+        return call;
+    }
+
+    @Override
+    public Call<Drink> drinksIdGet(@Path("id") int id) {
+        return null;
     }
 }

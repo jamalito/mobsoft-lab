@@ -3,12 +3,13 @@ package hu.bme.iemqra.mobsoft.myapplication.ui.main;
 /**
  * Created by mobsoft on 2017. 03. 24..
  */
+import org.greenrobot.eventbus.EventBus;
+
 import  hu.bme.iemqra.mobsoft.myapplication.ui.Presenter;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-import de.greenrobot.event.EventBus;
 public class MainPresenter extends Presenter<MainScreen> {
 
     @Inject
