@@ -13,9 +13,9 @@ import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.GetDrinksEven
 import hu.bme.iemqra.mobsoft.myapplication.ui.Presenter;
 
 public class BrowsePresenter extends Presenter<BrowseScreen> {
-//    @Inject
+    @Inject
 //    @Network
-//    Executor networkExecutor;
+    Executor networkExecutor;
 
     @Inject
     DrinksInteractor drinksInteractor;
@@ -34,7 +34,13 @@ public class BrowsePresenter extends Presenter<BrowseScreen> {
     }
 
     public void refreshDrinks() {
-        drinksInteractor.getDrinks();
+
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                drinksInteractor.getDrinks();
+            }
+        });
     }
 
     public void addFavourites() {

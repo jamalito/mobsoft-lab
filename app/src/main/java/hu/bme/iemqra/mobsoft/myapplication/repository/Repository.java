@@ -20,7 +20,11 @@ public interface Repository {
 
     void addFavourite(Drink drink);
 
+    void addDrink(Drink drink);
+
     void removeFavourite(Drink drink);
+
+    void removeAll();
 
     void updateFavourites(List<Drink> drinks);
 

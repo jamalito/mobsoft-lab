@@ -35,8 +35,18 @@ public class SugarOrmRepository implements Repository {
     }
 
     @Override
+    public void addDrink(Drink drink){
+        SugarRecord.saveInTx(drink);
+    }
+
+    @Override
     public void removeFavourite(Drink drink){
         SugarRecord.deleteInTx(drink);
+    }
+
+    @Override
+    public void removeAll() {
+        SugarRecord.deleteAll(Drink.class);
     }
 
     @Override

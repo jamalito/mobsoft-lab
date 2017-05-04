@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import hu.bme.iemqra.mobsoft.myapplication.MobSoftApplication;
 import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.AddDrinkEvent;
 import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.AddDrinkToFavouritesEvent;
+import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.GetDrinkEvent;
 import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.GetDrinksEvent;
 import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.GetFavouritesEvent;
 import hu.bme.iemqra.mobsoft.myapplication.interactor.drinks.event.RemoveDrinkFromFavouritesEvent;
@@ -39,6 +40,23 @@ public class DrinksInteractor {
     }
 
     public void addNewDrink(NewDrink newDrink) {
+        Call<Drink> queryCall = drinkApi.drinkPost(newDrink);
+
+        AddDrinkEvent event = new AddDrinkEvent();
+        try {
+            Response<Drink> response = queryCall.execute();
+            if (response.code() != 200) {
+                throw new Exception("Something went wrong!");
+            }
+            event.setCode(response.code());
+            Drink drink= response.body();
+            SugarRecord.saveInTx(drink);
+            event.setDrink(drink);
+            EventBus.getDefault().post(event);
+        } catch (Exception e) {
+            event.setThrowable(e);
+            EventBus.getDefault().post(event);
+        }
 
     }
 
@@ -65,6 +83,8 @@ public class DrinksInteractor {
             EventBus.getDefault().post(event);
         }
     }
+
+
 
     public void getFavouritesDrinks(){
         GetFavouritesEvent event = new GetFavouritesEvent();

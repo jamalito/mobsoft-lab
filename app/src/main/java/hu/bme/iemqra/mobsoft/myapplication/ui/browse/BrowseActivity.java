@@ -1,13 +1,24 @@
 package hu.bme.iemqra.mobsoft.myapplication.ui.browse;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +29,8 @@ import hu.bme.iemqra.mobsoft.myapplication.MobSoftApplication;
 import hu.bme.iemqra.mobsoft.myapplication.R;
 import hu.bme.iemqra.mobsoft.myapplication.adapter.DrinksAdapter;
 import hu.bme.iemqra.mobsoft.myapplication.model.Drink;
+import hu.bme.iemqra.mobsoft.myapplication.repository.Repository;
+import hu.bme.iemqra.mobsoft.myapplication.ui.newdrink.NewDrinkActivity;
 
 public class BrowseActivity extends AppCompatActivity implements BrowseScreen {
     private RecyclerView recyclerViewDrinks;
@@ -28,6 +41,9 @@ public class BrowseActivity extends AppCompatActivity implements BrowseScreen {
 
     @Inject
     BrowsePresenter browsePresenter;
+    @Inject
+    Repository repository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +66,29 @@ public class BrowseActivity extends AppCompatActivity implements BrowseScreen {
             @Override
             public void onRefresh() {
                 browsePresenter.refreshDrinks();
+        //createNavigationDrawer();
+
             }
         });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_drink:
+                startActivity(new Intent(BrowseActivity.this, NewDrinkActivity.class));
+                return true;
+            case R.id.remove:
+                repository.removeAll();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -90,4 +127,5 @@ public class BrowseActivity extends AppCompatActivity implements BrowseScreen {
         this.drinkList.addAll(drinkList);
         drinksAdapter.notifyDataSetChanged();
     }
+
 }

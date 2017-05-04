@@ -13,7 +13,7 @@ public class NewDrink {
     private String imgUrl = null;
 
     @SerializedName("count")
-    private String count = null;
+    private int count = 0;
 
     @SerializedName("recomm")
     private String recomm = null;
@@ -21,7 +21,7 @@ public class NewDrink {
     public NewDrink() {
     }
 
-    public NewDrink(String name, String type, String imgUrl, String count, String recomm) {
+    public NewDrink(String name, String type, String imgUrl, int count, String recomm) {
         this.name = name;
         this.type = type;
         this.imgUrl = imgUrl;
@@ -53,11 +53,11 @@ public class NewDrink {
         this.imgUrl = imgUrl;
     }
 
-    public String getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(String count) {
+    public void setCount(int count) {
         this.count = count;
     }
 

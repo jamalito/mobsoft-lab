@@ -31,7 +31,8 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name=".ui.browse.BrowseActivity" android:label="Browse"></activity>-->
+        <activity android:name=".ui.newdrink.NewDrinkActivity" android:label="Add"></activity>
+        <activity android:name=".ui.drinkdetails.DrinkDetailsActivity" android:label="Details"/>
     </application>
 
 </manifest>

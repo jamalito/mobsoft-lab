@@ -31,6 +31,13 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
     testCompile 'junit:junit:4.12'
+    testCompile('org.robolectric:shadows-support-v4:3.0-rc3') {
+                exclude group: 'commons-logging', module: 'commons-logging'
+                exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    //Mockito
+    testCompile "org.mockito:mockito-core:1.10.19"
+
 
     // Dagger 2 and Compiler
     compile "com.google.dagger:dagger-compiler:2.0.1"
@@ -48,6 +55,10 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
     compile 'com.google.code.gson:gson:2.4'
 
+    compile('com.mikepenz:materialdrawer:5.1.8@aar') {
+        transitive = true
+    }
+
     //JVM Test
     //JUnit
     testCompile 'junit:junit:4.12'
@@ -58,6 +69,24 @@ dependencies {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 
+    testCompile 'com.google.dagger:dagger-compiler:2.0.1'
+    testCompile 'com.google.dagger:dagger:2.0.1'
+    testApt "com.google.dagger:dagger-compiler:2.0.1"
+    testCompile 'javax.annotation:jsr250-api:1.0'
+
+
+    androidTestCompile 'com.android.support.test:runner:0.4'
+    androidTestCompile 'com.android.support.test:rules:0.4'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1')
+            {
+                exclude group: 'com.google.code.findbugs', module: 'jsr305'
+            }
+    androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
+    androidTestCompile 'com.android.support.test:rules:0.4.1'
+    android {
+        compileOptions.incremental = false
+    }
 
     //Mockito
     testCompile "org.mockito:mockito-core:1.10.19"

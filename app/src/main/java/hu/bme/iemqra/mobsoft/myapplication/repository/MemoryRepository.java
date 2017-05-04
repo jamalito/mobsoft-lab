@@ -37,7 +37,15 @@ public class MemoryRepository implements Repository {
     public void addFavourite(Drink drink){ drinks.add(drink);}
 
     @Override
+    public void addDrink(Drink drink){ drinks.add(drink);}
+
+    @Override
     public void removeFavourite(Drink drink){ drinks.remove(drink);}
+
+    @Override
+    public void removeAll() {
+
+    }
 
     @Override
     public void updateFavourites(List<Drink> drinks) {
